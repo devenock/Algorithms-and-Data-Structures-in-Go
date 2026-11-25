@@ -64,3 +64,48 @@ func sameFreq(a, b []int) bool {
 	}
 	return true
 }
+
+// PROBLEM 2: Contains Duplicate
+// Given an integer array nums, return true if any value appears more than once in the array, otherwise return false.
+// Example 1:
+// Input: nums = [1, 2, 3, 3]
+// Output: true
+
+// Example 2:
+// Input: nums = [1, 2, 3, 4]
+// Output: false
+
+// BRUTE FORCE
+func hasDuplicatesNaive(nums []int) bool {
+	if len(nums) == 0 {
+		return false
+	}
+	// loop through the slice twice and compare the values
+	for i := 0; i < len(nums); i++ {
+		for j := i + 1; j < len(nums); j++ {
+			if nums[i] == nums[j] {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+// OPTIMIZED SOLUTION
+func hasDuplicates(nums []int) bool {
+	if len(nums) == 0 {
+		return false
+	}
+	numFreq := make(map[int]int)
+	// loop through the slice and update the map
+	for _, val := range nums {
+		numFreq[val]++
+	}
+	// loop through the map to check the frequencies
+	for _, val := range numFreq {
+		if val > 1 {
+			return true
+		}
+	}
+	return false
+}
