@@ -109,3 +109,41 @@ func hasDuplicates(nums []int) bool {
 	}
 	return false
 }
+
+// PROBLEM 3: Valid Anagram
+// Given two strings s and t, return true if the two strings are anagrams of each other, otherwise return false.
+// Two strings are anagrams if they contain the same characters, with each character appearing the same number of times, regardless of order.
+// Example 1:
+// Input: s = "racecar", t = "carrace"
+// Output: true
+
+// Example 2:
+// Input: s = "jar", t = "jam"
+// Output: false
+// OPTIMIZED SOLUTION
+func isAnagram(s, t string) bool {
+	// check if the length is the same
+	if len(s) != len(t) {
+		return false
+	}
+	// initialize the frequency maps
+	sFreq := make(map[rune]int)
+	tFreq := make(map[rune]int)
+	// loop through the strings to update their frequency maps
+	for _, val := range s {
+		sFreq[val]++
+	}
+
+	for _, val := range t {
+		tFreq[val]++
+	}
+
+	// loop through the map to compare the frequencies
+	for key, val := range sFreq {
+		if val != tFreq[key] {
+			return false
+		}
+	}
+	return true
+
+}
